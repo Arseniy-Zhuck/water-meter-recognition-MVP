@@ -7,12 +7,14 @@ Python 3.10+ с pip и venv, CPU. На Debian/Ubuntu при отсутствии
 Из папки проекта:
 
 ```sh
-python3 start.py
+./start.sh
 ```
 
-Windows: `python start.py`. Скрипт сам создаёт `.venv`, устанавливает единственный `requirements.txt` и запускает сервис. Повторно зависимости устанавливаются только при изменении requirements.
+Windows (Git Bash): `bash start.sh`. Скрипт сам создаёт `.venv`, устанавливает единственный `requirements.txt` и запускает сервис. Повторно зависимости устанавливаются только при изменении requirements.
 
 Swagger: http://localhost:8011/docs. Остановка: Ctrl+C.
+
+Параметры Bash-скрипта: `--host` (или `--address`), `--port`, `--cert`, `--key`. Справка: `./start.sh --help`. Изменять код не требуется.
 
 ## HTTPS на стенде
 
@@ -24,7 +26,7 @@ Swagger: http://localhost:8011/docs. Остановка: Ctrl+C.
 После этого та же команда автоматически запускает HTTPS:
 
 ```sh
-python3 start.py
+./start.sh
 ```
 
 Swagger: `https://ВАШ-ДОМЕН:8011/docs`. Сертификат должен соответствовать домену. Откройте порт 8011 в firewall. Закрытый ключ должен читаться только учётной записью сервиса; сертификаты и ключи исключены из Git.
@@ -32,10 +34,10 @@ Swagger: `https://ВАШ-ДОМЕН:8011/docs`. Сертификат долже�
 Другие пути и порт указываются в команде (относительные пути считаются от папки проекта):
 
 ```sh
-python3 start.py --cert /etc/ssl/water-meter/fullchain.pem --key /etc/ssl/water-meter/privkey.pem --port 8443
+./start.sh --host 0.0.0.0 --port 8443 --cert /etc/ssl/water-meter/fullchain.pem --key /etc/ssl/water-meter/privkey.pem
 ```
 
-Альтернатива аргументам: переменные `SSL_CERTFILE` и `SSL_KEYFILE`. После обновления сертификата перезапустите сервис. Если SSL уже завершается на вашем reverse proxy, не копируйте сертификаты в `certs/`, запускайте `python3 start.py --host 127.0.0.1`, направьте proxy на HTTP-порт 8011.
+Альтернатива аргументам: переменные `SSL_CERTFILE` и `SSL_KEYFILE`. После обновления сертификата перезапустите сервис. Если SSL уже завершается на вашем reverse proxy, не копируйте сертификаты в `certs/`, запускайте `./start.sh --host 127.0.0.1 --port 8011`, направьте proxy на HTTP-порт 8011.
 
 ## API
 
