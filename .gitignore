@@ -17,3 +17,8 @@ models/
 *.tflite
 *.zip
 *.bak
+certs/
+*.pem
+*.key
+*.pfx
+*.p12

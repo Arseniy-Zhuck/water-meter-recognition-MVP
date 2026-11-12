@@ -5,3 +5,5 @@ Pillow==12.3.0
 numpy==2.2.6
 rapidocr-onnxruntime==1.4.4
 onnxruntime==1.23.2
+pytest==9.2.0
+httpx==0.28.1
